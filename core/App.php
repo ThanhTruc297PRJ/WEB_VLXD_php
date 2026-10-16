@@ -51,6 +51,7 @@ class App
         $this->router->get('estimate',           'EstimateController@index');
         $this->router->get('quote',              'QuoteController@index');
         $this->router->post('quote',             'QuoteController@submit');
+        $this->router->get('about',              'AboutController@index');
         $this->router->get('contact',            'ContactController@index');
         $this->router->post('contact',           'ContactController@send');
 

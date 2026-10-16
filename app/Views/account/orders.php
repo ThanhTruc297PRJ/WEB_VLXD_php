@@ -13,9 +13,9 @@ $statuses = [
         <span style="margin: 0 8px;">/</span><span>Đơn hàng của tôi</span>
     </div>
 
-    <div style="display: flex; gap: 24px; align-items: flex-start;">
+    <div class="account-layout">
         <!-- SIDEBAR -->
-        <div style="width: 240px; flex-shrink: 0;">
+        <div class="account-sidebar">
             <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm);">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
                     <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f36f21, #ff9a56); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800;">
@@ -34,7 +34,7 @@ $statuses = [
         </div>
 
         <!-- NỘI DUNG -->
-        <div style="flex: 1;">
+        <div class="account-content">
             <h2 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 18px;">
                 <i class="fa-solid fa-clipboard-list" style="color: var(--primary);"></i> Đơn Hàng Của Tôi
                 <span style="font-size: 0.85rem; font-weight: 500; color: #64748b;">(<?php echo count($orders); ?> đơn)</span>

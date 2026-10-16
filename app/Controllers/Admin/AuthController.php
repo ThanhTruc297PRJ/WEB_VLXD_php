@@ -1,5 +1,7 @@
 <?php
 
+require_once ROOT_PATH . '/app/Models/Admin.php';
+
 class AuthController extends Controller
 {
     public function login(): void
@@ -33,9 +35,7 @@ class AuthController extends Controller
         }
 
         try {
-            $stmt = $db->getConnection()->prepare("SELECT * FROM admins WHERE username = ? LIMIT 1");
-            $stmt->execute([$username]);
-            $admin = $stmt->fetch();
+            $admin = Admin::findByUsername($username);
 
             if ($admin && password_verify($password, $admin['password'])) {
                 $_SESSION['admin_id'] = $admin['id'];

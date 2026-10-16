@@ -17,9 +17,9 @@ $successes = [
         <span style="margin: 0 8px;">/</span><span>Hồ sơ tài khoản</span>
     </div>
 
-    <div style="display: flex; gap: 24px; align-items: flex-start;">
+    <div class="account-layout">
         <!-- SIDEBAR -->
-        <div style="width: 240px; flex-shrink: 0;">
+        <div class="account-sidebar">
             <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm);">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
                     <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f36f21, #ff9a56); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800;">
@@ -38,7 +38,7 @@ $successes = [
         </div>
 
         <!-- NỘI DUNG -->
-        <div style="flex: 1;">
+        <div class="account-content">
             <?php if (!empty($error) && isset($errors[$error])): ?>
                 <div style="background: #fee2e2; border-left: 4px solid #ef4444; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.88rem; color: #991b1b;">
                     <i class="fa-solid fa-circle-exclamation"></i> <?php echo $errors[$error]; ?>
@@ -92,7 +92,7 @@ $successes = [
                     <i class="fa-solid fa-lock" style="color: #2563eb;"></i> Đổi Mật Khẩu
                 </h3>
                 <form action="<?php echo url('account/profile/password'); ?>" method="POST">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                    <div class="profile-password-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
                         <div>
                             <label style="display: block; font-weight: 600; font-size: 0.85rem; color: #334155; margin-bottom: 5px;">Mật khẩu hiện tại <span style="color: #ef4444;">*</span></label>
                             <input type="password" name="current_password" required

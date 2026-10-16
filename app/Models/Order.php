@@ -47,6 +47,26 @@ class Order
         return $orderCode;
     }
 
+    public static function find(int $id): ?array
+    {
+        $db = Database::getInstance();
+        if (!$db->isConnected()) return null;
+
+        $stmt = $db->getConnection()->prepare("SELECT * FROM orders WHERE id = ? LIMIT 1");
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+        return $row ?: null;
+    }
+
+    public static function updateStatus(int $id, string $status): bool
+    {
+        $db = Database::getInstance();
+        if (!$db->isConnected()) return false;
+
+        $stmt = $db->getConnection()->prepare("UPDATE orders SET order_status = ? WHERE id = ?");
+        return $stmt->execute([$status, $id]);
+    }
+
     public static function count(): int
     {
         $db = Database::getInstance();

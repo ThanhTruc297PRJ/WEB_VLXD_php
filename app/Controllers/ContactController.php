@@ -1,5 +1,7 @@
 <?php
 
+require_once ROOT_PATH . '/app/Models/Contact.php';
+
 class ContactController extends Controller
 {
     public function index(): void
@@ -19,16 +21,10 @@ class ContactController extends Controller
 
         $saved = false;
         if ($name && $phone && $subject && $message) {
-            $db = Database::getInstance();
-            if ($db->isConnected()) {
-                try {
-                    $stmt = $db->getConnection()->prepare(
-                        "INSERT INTO contacts (name, phone, subject, message) VALUES (?, ?, ?, ?)"
-                    );
-                    $stmt->execute([$name, $phone, $subject, $message]);
-                    $saved = true;
-                } catch (Exception $e) {}
-            }
+            $saved = Contact::create([
+                'name' => $name, 'phone' => $phone,
+                'subject' => $subject, 'message' => $message,
+            ]);
         }
 
         $this->view('contact/index', [

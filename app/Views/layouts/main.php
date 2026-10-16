@@ -87,6 +87,9 @@ $cart_count = getCartCount();
                 <li class="nav-item <?php echo ($current_url === 'quote') ? 'active' : ''; ?>">
                     <a href="<?php echo url('quote'); ?>"><i class="fa-solid fa-file-signature"></i> Báo Giá Công Trình</a>
                 </li>
+                <li class="nav-item <?php echo ($current_url === 'about') ? 'active' : ''; ?>">
+                    <a href="<?php echo url('about'); ?>"><i class="fa-solid fa-building"></i> Giới Thiệu</a>
+                </li>
                 <li class="nav-item <?php echo ($current_url === 'contact') ? 'active' : ''; ?>">
                     <a href="<?php echo url('contact'); ?>"><i class="fa-solid fa-map-location-dot"></i> Liên Hệ & Kho Bãi</a>
                 </li>

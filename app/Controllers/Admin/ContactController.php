@@ -1,5 +1,7 @@
 <?php
 
+require_once ROOT_PATH . '/app/Models/Contact.php';
+
 class ContactController extends Controller
 {
     public function index(): void
@@ -67,13 +69,7 @@ class ContactController extends Controller
 
         $id = (int)($_GET['id'] ?? 0);
         if ($id > 0) {
-            $db = Database::getInstance();
-            if ($db->isConnected()) {
-                try {
-                    $stmt = $db->getConnection()->prepare("UPDATE contacts SET is_read = 1 WHERE id = ?");
-                    $stmt->execute([$id]);
-                } catch (Exception $e) {}
-            }
+            Contact::markRead($id);
         }
 
         $query = $_GET['redirect'] ?? '';
@@ -87,13 +83,7 @@ class ContactController extends Controller
 
         $id = (int)($_GET['id'] ?? 0);
         if ($id > 0) {
-            $db = Database::getInstance();
-            if ($db->isConnected()) {
-                try {
-                    $stmt = $db->getConnection()->prepare("DELETE FROM contacts WHERE id = ?");
-                    $stmt->execute([$id]);
-                } catch (Exception $e) {}
-            }
+            Contact::delete($id);
         }
 
         $query = $_GET['redirect'] ?? '';
