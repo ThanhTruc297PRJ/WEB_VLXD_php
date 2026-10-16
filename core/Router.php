@@ -39,8 +39,10 @@ class Router
         }
 
         http_response_code(404);
-        echo '<h1>404 - Trang không tồn tại</h1>';
-        echo '<p><a href="' . url('/') . '">Quay về trang chủ</a></p>';
+        $controller = new Controller();
+        $ref = new ReflectionMethod($controller, 'view');
+        $ref->setAccessible(true);
+        $ref->invoke($controller, 'errors/404', ['page_title' => 'Không tìm thấy trang']);
     }
 
     private function convertToRegex(string $path): string

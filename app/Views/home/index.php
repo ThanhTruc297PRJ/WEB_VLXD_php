@@ -124,7 +124,7 @@
 <!-- 5. CAM KẾT -->
 <section class="section" style="background: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container">
-        <div class="section-title" style="text-align: center; margin-bottom: 35px;"><h2>Tại Sao Các Nhà Thầu Lựa Chọn VLXD Toàn Thắng?</h2><p>Uy tín tạo nên thương hiệu - Đồng hành cùng hàng ngàn công trình dân dụng & dự án lớn</p></div>
+        <div class="section-title" style="text-align: center; margin-bottom: 35px;"><h2>Tại Sao Các Nhà Thầu Lựa Chọn VLXD Hương Tiến?</h2><p>Uy tín tạo nên thương hiệu - Đồng hành cùng hàng ngàn công trình dân dụng & dự án lớn</p></div>
         <div class="features-grid">
             <div class="feature-box"><div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div><div class="feature-info"><h4>Vận Chuyển Đa Phương Tiện</h4><p>Sở hữu đội xe ben 2.5T luồn lách hẻm nhỏ và xe tải cẩu 15T hạ hàng nặng an toàn tại công trình.</p></div></div>
             <div class="feature-box"><div class="feature-icon"><i class="fa-solid fa-weight-scale"></i></div><div class="feature-info"><h4>Chuẩn Khối Lượng & Mác Thép</h4><p>Cát đá đong thùng m³ chính xác, sắt thép nguyên tem mác nhà máy, cân tải trọng rõ ràng minh bạch.</p></div></div>

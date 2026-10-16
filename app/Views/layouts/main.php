@@ -27,7 +27,8 @@ $cart_count = getCartCount();
                     <a href="<?php echo url('admin'); ?>"><i class="fa-solid fa-user-shield"></i> Quản trị</a>
                     <a href="<?php echo url('admin/logout'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                 <?php elseif (!empty($_SESSION['customer_id'])): ?>
-                    <span style="color: #fbbf24;"><i class="fa-solid fa-user"></i> <?php echo htmlspecialchars($_SESSION['customer_name']); ?></span>
+                    <a href="<?php echo url('account/profile'); ?>" style="color: #fbbf24;"><i class="fa-solid fa-user"></i> <?php echo htmlspecialchars($_SESSION['customer_name']); ?></a>
+                    <a href="<?php echo url('account/orders'); ?>"><i class="fa-solid fa-clipboard-list"></i> Đơn hàng</a>
                     <a href="<?php echo url('logout'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                 <?php else: ?>
                     <a href="<?php echo url('login'); ?>"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>

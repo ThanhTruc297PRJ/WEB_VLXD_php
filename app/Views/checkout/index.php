@@ -7,7 +7,7 @@
         </div>
         <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--secondary-dark); margin-bottom: 8px;">Đặt Hàng Thành Công!</h2>
         <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">
-            Cảm ơn bạn đã đặt hàng tại VLXD Toàn Thắng. Chúng tôi sẽ liên hệ xác nhận đơn hàng trong thời gian sớm nhất.
+            Cảm ơn bạn đã đặt hàng tại VLXD Hương Tiến. Chúng tôi sẽ liên hệ xác nhận đơn hàng trong thời gian sớm nhất.
         </p>
 
         <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 25px; text-align: left;">

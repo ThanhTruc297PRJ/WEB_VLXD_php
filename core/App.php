@@ -34,6 +34,12 @@ class App
         $this->router->get('resend-otp',         'AuthController@resendOtp');
         $this->router->get('logout',             'AuthController@logout');
 
+        // Tài khoản khách hàng
+        $this->router->get('account/orders',     'AccountController@orders');
+        $this->router->get('account/profile',    'AccountController@profile');
+        $this->router->post('account/profile/update',   'AccountController@updateProfile');
+        $this->router->post('account/profile/password', 'AccountController@changePassword');
+
         // Trang khách hàng
         $this->router->get('',                   'HomeController@index');
         $this->router->get('products',           'ProductController@index');
