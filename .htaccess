@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Nếu file hoặc thư mục thật sự tồn tại thì phục vụ trực tiếp (CSS, JS, ảnh, ...)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Còn lại chuyển qua front controller
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>

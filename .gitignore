@@ -1,0 +1,19 @@
+# Dependencies
+/vendor/
+
+# Environment / sensitive config
+/config/env.php
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Old/backup files
+/_old/
