@@ -148,6 +148,159 @@ $cart_count = getCartCount();
         </div>
     </footer>
 
+    <!-- CHATBOX WIDGET -->
+    <div id="chatbox-toggle" onclick="toggleChatbox()" style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: linear-gradient(135deg, #f36f21, #e85d04); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(243,111,33,0.45); z-index: 9999; transition: all 0.3s;">
+        <i class="fa-solid fa-comments" id="chatbox-icon" style="color: #fff; font-size: 24px; transition: all 0.3s;"></i>
+        <span id="chatbox-badge" style="display: none; position: absolute; top: -2px; right: -2px; background: #ef4444; color: #fff; font-size: 0.65rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: none; align-items: center; justify-content: center;">1</span>
+    </div>
+
+    <div id="chatbox-panel" style="display: none; position: fixed; bottom: 92px; right: 24px; width: 360px; max-width: calc(100vw - 32px); background: #fff; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); z-index: 9999; overflow: hidden; animation: chatSlideUp 0.3s ease;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #f36f21, #e85d04); padding: 16px 20px; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-headset" style="color: #fff; font-size: 18px;"></i>
+            </div>
+            <div style="flex: 1;">
+                <div style="color: #fff; font-weight: 700; font-size: 0.95rem;">Hỗ Trợ Tư Vấn</div>
+                <div style="color: rgba(255,255,255,0.8); font-size: 0.75rem; display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 6px; height: 6px; background: #4ade80; border-radius: 50; display: inline-block;"></span> Online — Phản hồi trong 5 phút
+                </div>
+            </div>
+            <div onclick="toggleChatbox()" style="cursor: pointer; color: rgba(255,255,255,0.8); font-size: 18px; padding: 4px;">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="chatbox-messages" style="height: 280px; overflow-y: auto; padding: 16px; background: #f8fafc;">
+            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #f36f21, #e85d04); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <i class="fa-solid fa-trowel-bricks" style="color: #fff; font-size: 12px;"></i>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 0 12px 12px 12px; padding: 10px 14px; max-width: 80%; font-size: 0.85rem; color: #334155; line-height: 1.5;">
+                    Xin chào! 👋 Chào mừng bạn đến với <strong>VLXD Hương Tiến</strong>.<br>
+                    Bạn cần tư vấn về vật liệu xây dựng, báo giá hay vận chuyển? Hãy để lại tin nhắn, chúng tôi sẽ phản hồi sớm nhất!
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick buttons -->
+        <div id="chatbox-quick" style="padding: 8px 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; flex-wrap: wrap;">
+            <button onclick="quickChat('Tôi cần báo giá vật liệu')" style="background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; border-radius: 16px; padding: 5px 12px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: inherit;">Báo giá vật liệu</button>
+            <button onclick="quickChat('Tôi cần tư vấn vận chuyển')" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; border-radius: 16px; padding: 5px 12px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: inherit;">Tư vấn vận chuyển</button>
+            <button onclick="quickChat('Tôi muốn hỏi về sản phẩm')" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; border-radius: 16px; padding: 5px 12px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: inherit;">Hỏi về sản phẩm</button>
+        </div>
+
+        <!-- Input form -->
+        <div style="padding: 12px 16px; border-top: 1px solid #e2e8f0; background: #fff;">
+            <div id="chatbox-info" style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <input type="text" id="chat-name" placeholder="Họ tên *" style="flex: 1; padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; font-family: inherit; outline: none;" value="<?php echo !empty($_SESSION['customer_name']) ? htmlspecialchars($_SESSION['customer_name']) : ''; ?>">
+                <input type="text" id="chat-phone" placeholder="SĐT *" style="width: 120px; padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; font-family: inherit; outline: none;">
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <input type="text" id="chat-message" placeholder="Nhập tin nhắn..." style="flex: 1; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 24px; font-size: 0.88rem; font-family: inherit; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#f36f21'" onblur="this.style.borderColor='#e2e8f0'" onkeypress="if(event.key==='Enter')sendChat()">
+                <button onclick="sendChat()" style="width: 42px; height: 42px; background: linear-gradient(135deg, #f36f21, #e85d04); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform=''">
+                    <i class="fa-solid fa-paper-plane" style="color: #fff; font-size: 16px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    @keyframes chatSlideUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    #chatbox-messages::-webkit-scrollbar { width: 4px; }
+    #chatbox-messages::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    @media (max-width: 480px) {
+        #chatbox-panel { width: calc(100vw - 16px) !important; right: 8px !important; bottom: 80px !important; }
+        #chatbox-toggle { bottom: 16px !important; right: 16px !important; width: 50px !important; height: 50px !important; }
+    }
+    </style>
+
+    <script>
+    var chatboxOpen = false;
+    function toggleChatbox() {
+        var panel = document.getElementById('chatbox-panel');
+        var icon = document.getElementById('chatbox-icon');
+        chatboxOpen = !chatboxOpen;
+        panel.style.display = chatboxOpen ? 'block' : 'none';
+        icon.className = chatboxOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-comments';
+        if (chatboxOpen) {
+            var msgs = document.getElementById('chatbox-messages');
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+    }
+
+    function quickChat(text) {
+        document.getElementById('chat-message').value = text;
+        document.getElementById('chat-message').focus();
+        document.getElementById('chatbox-quick').style.display = 'none';
+    }
+
+    function addMessage(text, isUser) {
+        var msgs = document.getElementById('chatbox-messages');
+        var div = document.createElement('div');
+        div.style.cssText = 'display:flex;gap:8px;margin-bottom:12px;' + (isUser ? 'flex-direction:row-reverse;' : '');
+
+        if (isUser) {
+            div.innerHTML = '<div style="background:#f36f21;color:#fff;border-radius:12px 0 12px 12px;padding:10px 14px;max-width:80%;font-size:0.85rem;line-height:1.5;">' + escHtml(text) + '</div>';
+        } else {
+            div.innerHTML = '<div style="width:30px;height:30px;background:linear-gradient(135deg,#f36f21,#e85d04);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-trowel-bricks" style="color:#fff;font-size:12px;"></i></div>'
+                + '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:0 12px 12px 12px;padding:10px 14px;max-width:80%;font-size:0.85rem;color:#334155;line-height:1.5;">' + text + '</div>';
+        }
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function escHtml(t) {
+        var d = document.createElement('div');
+        d.textContent = t;
+        return d.innerHTML;
+    }
+
+    function sendChat() {
+        var name = document.getElementById('chat-name').value.trim();
+        var phone = document.getElementById('chat-phone').value.trim();
+        var msg = document.getElementById('chat-message').value.trim();
+
+        if (!name || !phone) {
+            document.getElementById('chat-name').style.borderColor = name ? '#e2e8f0' : '#ef4444';
+            document.getElementById('chat-phone').style.borderColor = phone ? '#e2e8f0' : '#ef4444';
+            return;
+        }
+        if (!msg) return;
+
+        addMessage(msg, true);
+        document.getElementById('chat-message').value = '';
+        document.getElementById('chatbox-quick').style.display = 'none';
+
+        var info = document.getElementById('chatbox-info');
+        if (info) info.style.display = 'none';
+
+        var fd = new FormData();
+        fd.append('name', name);
+        fd.append('phone', phone);
+        fd.append('subject', 'Chat từ website');
+        fd.append('message', msg);
+
+        fetch('<?php echo url("chat/send"); ?>', {
+            method: 'POST',
+            body: fd
+        }).then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.ok) {
+                addMessage('Cảm ơn bạn! Chúng tôi đã nhận được tin nhắn và sẽ phản hồi sớm nhất. Bạn cũng có thể gọi trực tiếp <strong><?php echo SITE_HOTLINE; ?></strong> để được tư vấn ngay.', false);
+            } else {
+                addMessage('Xin lỗi, có lỗi xảy ra. Vui lòng thử lại hoặc gọi <strong><?php echo SITE_HOTLINE; ?></strong>.', false);
+            }
+        }).catch(function() {
+            addMessage('Không thể gửi tin nhắn. Vui lòng gọi <strong><?php echo SITE_HOTLINE; ?></strong> để được hỗ trợ.', false);
+        });
+    }
+    </script>
+
     <script src="<?php echo asset('js/main.js'); ?>"></script>
 </body>
 </html>

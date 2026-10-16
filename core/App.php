@@ -52,6 +52,7 @@ class App
         $this->router->get('quote',              'QuoteController@index');
         $this->router->post('quote',             'QuoteController@submit');
         $this->router->get('about',              'AboutController@index');
+        $this->router->post('chat/send',         'ChatController@send');
         $this->router->get('contact',            'ContactController@index');
         $this->router->post('contact',           'ContactController@send');
 
