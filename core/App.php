@@ -59,7 +59,22 @@ class App
         $this->router->post('admin/products',    'Admin/ProductController@store');
         $this->router->get('admin/products/delete/{id}', 'Admin/ProductController@delete');
         $this->router->get('admin/products/delete-image/{id}', 'Admin/ProductController@deleteImage');
+        $this->router->get('admin/orders',       'Admin/OrderController@index');
+        $this->router->post('admin/orders',      'Admin/OrderController@updateStatus');
+        $this->router->get('admin/customers',    'Admin/CustomerController@index');
+        $this->router->get('admin/customers/detail', 'Admin/CustomerController@detail');
+        $this->router->get('admin/categories',   'Admin/CategoryController@index');
+        $this->router->get('admin/categories/edit', 'Admin/CategoryController@edit');
+        $this->router->post('admin/categories',  'Admin/CategoryController@store');
+        $this->router->get('admin/categories/delete', 'Admin/CategoryController@delete');
+        $this->router->get('admin/contacts',     'Admin/ContactController@index');
+        $this->router->get('admin/contacts/mark-read', 'Admin/ContactController@markRead');
+        $this->router->get('admin/contacts/delete', 'Admin/ContactController@delete');
         $this->router->get('admin/revenue',      'Admin/RevenueController@index');
+        $this->router->get('admin/settings',     'Admin/SettingController@index');
+        $this->router->post('admin/settings/store',    'Admin/SettingController@updateStore');
+        $this->router->post('admin/settings/bank',     'Admin/SettingController@updateBank');
+        $this->router->post('admin/settings/shipping', 'Admin/SettingController@updateShipping');
         $this->router->get('admin/quotes',       'Admin/QuoteController@index');
         $this->router->post('admin/quotes',      'Admin/QuoteController@updateStatus');
     }
